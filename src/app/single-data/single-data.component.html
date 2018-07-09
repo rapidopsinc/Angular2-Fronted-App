@@ -1,0 +1,69 @@
+<div class="container" *ngIf="!editModeOn">
+  <div class="container page">
+    <div class="row">
+      <h1>Displayed data for id {{dataObj.id}}</h1>
+    </div>
+    <form #validationForm="ngForm" novalidate class='form-horizontal'
+          [ngClass]="{'ng-submitted':validationForm.submitted}">
+    <div class="form-group">
+      <h3><i><u>Id:</u></i></h3>
+      <h4><b>{{dataObj.id}}</b></h4>
+    </div>
+    <div class="form-group">
+      <h3><i><u>UserId:</u></i></h3><h4><b>{{dataObj.userId}}</b></h4>
+    </div>
+
+    <div class="form-group">
+      <h3><i><u>Title:</u></i></h3>
+      <h3><b>{{dataObj.title}}</b></h3>
+    </div>
+
+    <div class="form-group">
+      <h3><i><u>Body:</u></i></h3>
+      <h3><b>{{dataObj.body}}</b></h3>
+    </div>
+
+    <div class="container container page row">
+      <button class="btn btn-success" type="submit" (click)="Edit()">Edit</button>
+    </div>
+    </form>
+  </div>
+</div>
+
+
+<div class="container" *ngIf="editModeOn">
+  <div class="container page">
+    <div class="row">
+      <h1>Edit</h1>
+    </div>
+    <form #EditDataForm="ngForm" novalidate class='form-horizontal'
+          [ngClass]="{'ng-submitted':EditDataForm.submitted}">
+
+      <div class="form-group">
+        <label>Title <span style="color: red">*</span></label>
+        <input class="form-control" type="text" name="title" id="title" [(ngModel)]="dataObj.title" #title="ngModel" required>
+        <span *ngIf="title.invalid && (title.dirty || EditDataForm.submitted)">
+        <span class="alert-danger error-msg" *ngIf="title.errors.required">
+          Please provide title.
+        </span>
+      </span>
+      </div>
+
+      <div class="form-group">
+        <label>Body <span style="color: red">*</span></label>
+        <input class="form-control" type="text" name="body" id="body" [(ngModel)]="dataObj.body" #body="ngModel" required>
+        <span *ngIf="body.invalid && (body.dirty || EditDataForm.submitted)">
+        <span class="alert-danger error-msg" *ngIf="body.errors.required">
+          Please provide body.
+        </span>
+      </span>
+      </div>
+
+
+      <div class="container container page row">
+        <button class="btn btn-success" type="submit" (click)="Update(EditDataForm)">Update</button> &nbsp;&nbsp;
+        <button class="btn btn-success" type="button" (click)="Cancel()">Cancel</button>
+        </div>
+    </form>
+  </div>
+</div>

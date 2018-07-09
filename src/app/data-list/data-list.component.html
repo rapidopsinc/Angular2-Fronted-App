@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="container page">
+    <div class="row">
+      <h1>List</h1>
+    </div>
+    <div class="row" style="height: 500px ;overflow: scroll">
+    <table class="table" border="2">
+      <td>Id</td>
+      <td>UserId</td>
+      <td>Title</td>
+      <td>Body</td>
+      <td>View record</td>
+      <td>Delete Record</td>
+      <tr *ngFor="let data of dataList">
+        <td>{{data.id}}</td>
+        <td>{{data.userId}}</td>
+        <td>{{data.title}}</td>
+        <td>{{data.body}}</td>
+        <td>
+        <a href="javascript:void(0)" [routerLink]="['/single-data/view/'+ data.id]">open</a>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger" (click)="delete(data.id)">delete</button>
+        </td>
+      </tr>
+    </table>
+    </div>
+  </div>
+</div>
